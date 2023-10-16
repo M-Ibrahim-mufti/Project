@@ -61,8 +61,7 @@
     const errorMessage = ref("")
     const Email = ref("")
     const Password = ref("")
-    const New_users = collection (db, "New_Users")
-    const Users = collection(db, "Finance")
+
 // Functions 
 
     // When hovering over the google icon it will slide right and display the Sign in to google text

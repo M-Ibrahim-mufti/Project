@@ -41,7 +41,6 @@
     const errorMessage = ref("")
     const Email = ref("")
     const Password = ref("")
-    const docid = ref()
 // Functions 
 
     // Adding and removing animatin and reappearing it on click 
@@ -81,9 +80,7 @@
 
     // Creation DataBase collection and adding new user to it
     const createUser = async(Email, Password) => {
-        console.log("create user called")
         try {
-            console.log("Try Called")
         // Created user will be stored in NewUser collection
             const colRef = collection(db, "New_Users")
             const Users = collection(db, "Users")
@@ -92,12 +89,10 @@
                 email: Email, 
                 password: Password
             })
+            // Adding Email Of the user to the second collection so that it can access its components with ease
             addDoc(Users, {
                 User_Email : Email
             })
-            console.log("Document created ")
-            docid.value = docRef.id
- 
         }
         catch (error) {
             alert("Having issue saving user data in the database", error)

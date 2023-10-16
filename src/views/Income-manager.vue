@@ -47,7 +47,7 @@
                 </div>
             </div>
         </section>
-        <section v-if="!showEditPopup" class="edit-popup text-clr pb-20 mx-4 bg-slate-800 text-center max-xl:!max-w-[800px] max-md:!max-w-[600px] max-sm:!max-w-[400px]">
+        <section v-if="showEditPopup" class="edit-popup text-clr pb-20 mx-4 bg-slate-800 text-center max-xl:!max-w-[800px] max-md:!max-w-[600px] max-sm:!max-w-[400px]">
             <div class="flex flex-row justify-evenly py-10 max-sm:flex-col">
                 <div class="w-[50%] text-left ml-5 max-sm:w-full max-sm:ml-0">
                     <h2 class="text-4xl text-white font-bold mb-5 max-sm:text-2xl max-sm:text-center">Edit Income</h2>
@@ -74,6 +74,8 @@
 </template>
 
 <script setup>
+    // Same as Expense Manager with different Variables 
+
     import { onMounted, ref } from 'vue';
     import { onSnapshot, doc, collection, addDoc, deleteDoc,updateDoc } from 'firebase/firestore';
     import { db } from '@/main';
