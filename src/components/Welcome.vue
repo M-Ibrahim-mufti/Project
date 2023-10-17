@@ -40,7 +40,7 @@
                     <p class="mb-2 max-sm:text-sm">Welcome to our Monthly Expense Management System! Our platform is designed to help you effortlessly track and manage your monthly expenses.</p>
                     <p class="mb-2 max-sm:text-sm">With user-friendly features and intuitive design</p>
                     <p class="mb-3 max-sm:text-sm">Take control of your finances with us and experience a seamless approach to tracking, analyzing, and optimizing your expenses</p>
-                    <div class="flex justify-end"><a href="/About" class="btn" >Read More</a></div>
+                    <div class="flex justify-end"><a href="/dashboard" class="btn" >Read More</a></div>
                 </div>
             </div>
         </div>
