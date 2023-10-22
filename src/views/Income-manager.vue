@@ -54,13 +54,13 @@
                     <p class="text-2xl text-justify ml-5 max-sm:text-base max-sm:mx-4 max-sm:mb-4">Made a mistake while typing not a issue just re write what you mistyped and fix the issue just by clicking save if you dont have any issue just press cancel and you will be backed out to previous screen</p>
                 </div>
                 <div class="w-[40%] max-sm:w-full">
-                    <h2 class="text-4xl text-white font-bold mb-5 max-sm:text-2xl">Edit your Expenses Here</h2>
+                    <h2 class="text-4xl text-white font-bold mb-5 max-sm:text-2xl">Edit your Income Here</h2>
                     <div class="mb-10 max-sm:mx-4">
-                        <label class="block text-left text-2xl mb-3 text-white" for="editName">Expense Name</label>
+                        <label class="block text-left text-2xl mb-3 text-white" for="editName">Income Name</label>
                         <input class="w-full outline-none border-b-2 pl-3 bg-slate-800 border-gray-600 text-xl" type="text" v-model="EditsIncome.name" id="editName">
                     </div>
                     <div class="max-sm:mx-4">
-                        <label class="block text-left text-2xl mb-3 text-white" for="editPrice">Expense Price</label>
+                        <label class="block text-left text-2xl mb-3 text-white" for="editPrice">Income Price</label>
                         <input class="w-full outline-none border-b-2 pl-3 bg-slate-800 border-gray-600 text-xl" type="number" v-model="EditsIncome.price" id="editPrice">
                     </div>
                 </div>
