@@ -7,15 +7,15 @@
                         <h2 class="text-4xl font-bold text-white mb-5  max-md:text-2xl">Income Manager</h2>
                         <p class="ml-5 text-2xl text-justify max-md:text-lg">Effectively managing income is a cornerstone of financial stability and prosperity. It involves a systematic approach to handling the money one earns, ensuring it is utilized wisely to meet both short-term needs and long-term goals. This process encompasses various key steps, including budgeting, tracking expenses, and setting financial goals. By creating a well-structured budget, individuals can allocate their income to cover essentials like housing, food, and transportation while also earmarking funds for savings and investments. Additionally, regularly monitoring expenses provides valuable insights into spending patterns, enabling adjustments to be made where necessary. Setting clear financial goals, such as saving for a major purchase or planning for retirement, offers direction and purpose to income management efforts.</p>
                     </div>
-                    <form class="w-[50%] ml-5 max-md:my-auto max-sm:w-full max-sm:ml-0" @submit.prevent="onSubmit">
+                    <form class="w-[50%] ml-5 max-md:my-auto max-sm:w-full max-sm:ml-0" @submit.prevent="OnSubmit">
                         <h2 class=" text-white mb-5 text-4xl text-left font-bold">Add Your Incomes</h2>
                         <div class="mx-5 my-auto flex flex-col justify-start mb-5">
                             <label class="text-white text-center font-bold text-2xl mb-3 max-sm:text-left" for="income">Enter your Income Category</label>
-                            <input class="bg-slate-800 text-white outline-none border-b-2 text-lg py-2 px-4" type="text" v-model="text" placeholder="Enter your Income Category here">
+                            <input class="bg-slate-800 text-white outline-none border-b-2 text-lg py-2 px-4" type="text" v-model="Text" placeholder="Enter your Income Category here">
                         </div>
                         <div class="mx-5 flex flex-col mb-5">
                             <label class="text-white text-center font-bold text-2xl mb-3 max-sm:text-left" for="Budget">Enter Your Income</label>
-                            <input class="bg-slate-800 text-white outline-none border-b-2 text-lg py-2 px-4" type="number" v-model="number" placeholder="Enter your Income here">
+                            <input class="bg-slate-800 text-white outline-none border-b-2 text-lg py-2 px-4" type="number" v-model="Numbers" placeholder="Enter your Income here">
                         </div>
                         <div class="flex justify-end">
                             <button class="text-2xl py-3 px-6 rounded-[20px] bg-slate-700 text-white" type="submit">Submit</button>
@@ -35,19 +35,19 @@
                         <h2 class="w-[40%] text-left text-2xl mx-3 py-3 pr-3 max-sm:text-base">{{ val.Income }}</h2>
                         <div class="flex w-full mr-5 text-xl text-red-600 justify-end items-center  max-sm:w-[20%]">
                             <button @click="EditTask(val.id)" class="max-sm:w-[50%] max-sm:py-1 max-sm:px-2 max-sm:mr-1 max-sm:text-sm max-sm:rounded-full rounded-[20px] text-lg px-6 py-2 mr-5 text-white bg-green-900 hover:bg-green-600 transition-all duration-300 ease-in ">E</button>
-                            <button @click="deletedata(val.id)" class="max-sm:w-[50%] max-sm:py-1 max-sm:px-2 max-sm:ml-1 max-sm:text-sm rounded-[20px] text-lg px-6 py-2 text-white bg-red-900 hover:bg-red-600 transition-all duration-300 ease-in">X</button>                        
+                            <button @click="DeleteData(val.id)" class="max-sm:w-[50%] max-sm:py-1 max-sm:px-2 max-sm:ml-1 max-sm:text-sm rounded-[20px] text-lg px-6 py-2 text-white bg-red-900 hover:bg-red-600 transition-all duration-300 ease-in">X</button>                        
                         </div>
                     </div>
                 </div>
                 <div>
                     <div class="pop_up mx-5 w-[95%] bg-slate-900 text-clr mb-3 flex flex-row border-2 border-gray-600 items-center rounded-[5px] max-sm:mx-auto ">
                         <h2 class="w-[40%] text-left text-2xl mx-3 py-3 pr-3 border-r-4 border-gray-600 max-sm:text-base">Total income is </h2>
-                        <h2 class="w-[60%] text-left text-2xl mx-3 py-3 pr-3 max-sm:text-base">{{ Total_income }}</h2>
+                        <h2 class="w-[60%] text-left text-2xl mx-3 py-3 pr-3 max-sm:text-base">{{ TotalIncome }}</h2>
                     </div>
                 </div>
             </div>
         </section>
-        <section v-if="showEditPopup" class="edit-popup text-clr pb-20 mx-4 bg-slate-800 text-center max-xl:!max-w-[800px] max-md:!max-w-[600px] max-sm:!max-w-[400px]">
+        <section v-if="ShowEditPopUp" class="edit-popup text-clr pb-20 mx-4 bg-slate-800 text-center max-xl:!max-w-[800px] max-md:!max-w-[600px] max-sm:!max-w-[400px]">
             <div class="flex flex-row justify-evenly py-10 max-sm:flex-col">
                 <div class="w-[50%] text-left ml-5 max-sm:w-full max-sm:ml-0">
                     <h2 class="text-4xl text-white font-bold mb-5 max-sm:text-2xl max-sm:text-center">Edit Income</h2>
@@ -66,8 +66,8 @@
                 </div>
             </div>
             <div class="mt-10 flex flex-row justify-center">
-                <button class="text-2xl mr-5 py-2 px-10 bg-slate-700 rounded-3xl hover:bg-white transition-all duration-300 ease-in" @click="saveEdit">Save</button>
-                <button class="text-2xl ml-5 py-2 px-10 bg-slate-700 rounded-3xl hover:bg-white transition-all duration-300 ease-in"  @click="cancelEdit">Cancel</button>
+                <button class="text-2xl mr-5 py-2 px-10 bg-slate-700 rounded-3xl hover:bg-white transition-all duration-300 ease-in" @click="SaveEdit">Save</button>
+                <button class="text-2xl ml-5 py-2 px-10 bg-slate-700 rounded-3xl hover:bg-white transition-all duration-300 ease-in"  @click="CancelEdit">Cancel</button>
             </div>
         </section>
     </div>
@@ -83,58 +83,62 @@
     
     let auth
     const AU = ref()
-    const number = ref("")
-    const text = ref("")
-    const Current_id = ref() 
+    const Numbers = ref("")
+    const Text = ref("")
+    const CurrentId = ref() 
     const Income = ref([])
-    let Total_income = 0
+    let TotalIncome = 0
     const Users = collection(db, "Users")
     const EditsIncome = ref({id:"", name:"", price:""})
-    const showEditPopup = ref(false)
+    const ShowEditPopUp = ref(false)
 
-    const cancelEdit = () =>{
-        showEditPopup.value = false
+    const CancelEdit = () =>{
+        ShowEditPopUp.value = false
     }
 
-    const saveEdit = () => {
-        const IncomeRef = doc(Users, Current_id.value,"Income", EditsIncome.value.id)
+    const SaveEdit = () => {
+        const IncomeRef = doc(Users, CurrentId.value,"Income", EditsIncome.value.id)
         updateDoc(IncomeRef, {
             Income_Category: EditsIncome.value.name,
             Income: EditsIncome.value.price
         })
         
-        showEditPopup.value = false
+        ShowEditPopUp.value = false
     }
     const EditTask = (id) =>{
         const income = Income.value.find(item => item.id === id )
 
         if(income) {
-            EditsIncome.value = {id:income.id, name:income.Income_Category, price:income.Income}
-            showEditPopup.value = true
+            EditsIncome.value = {
+                id:income.id,
+                name:income.Income_Category, 
+                price:income.Income
+            }
+            ShowEditPopUp.value = true
         }
     }
 
 
-    const onSubmit = async() => {
-        console.log(Current_id.value)
-        if(text.value == "" && number.value ==""){
+    const OnSubmit = async() => {
+        console.log(CurrentId.value)
+        if(Text.value == "" && Numbers.value ==""){
             alert("fields cannot be empty")
         }
         else{
-            await addDoc(collection(Users, Current_id.value, "Income"), {
-                Income_Category : text.value,
-                Income : number.value
+            addDoc(collection(Users, CurrentId.value, "Income"), {
+                Income_Category : Text.value,
+                Income : Numbers.value
             })
         }
 
-        text.value = ""
-        number.value = ""
+        Text.value = ""
+        Numbers.value = ""
     }
 
-    const deletedata = async(id) => {
-        const ExpenseRef = doc(Users, Current_id.value, "Income", id)
+    const DeleteData = async(id) => {
+        const ExpenseRef = doc(Users, CurrentId.value, "Income", id)
         console.log(ExpenseRef.id) 
-        await deleteDoc(ExpenseRef)
+        deleteDoc(ExpenseRef)
 
         Income.value = Income.value.filter(items => items.id !== id)
     }
@@ -143,13 +147,13 @@
         console.log(AU.value)
         Query.forEach((doc)=> {
             if(doc.data().User_Email === AU.value || doc.data().User_Email === capitalizeFirstLetter(AU.value)){
-                Current_id.value = doc.id
-                onSnapshot(collection(Users, Current_id.value, "Income"), (InnerQuery) => {
+                CurrentId.value = doc.id
+                onSnapshot(collection(Users, CurrentId.value, "Income"), (InnerQuery) => {
                     Income.value = []
-                    Total_income = 0
+                    TotalIncome = 0
                     InnerQuery.forEach((doc) => {
                         Income.value.push({id:doc.id, ...doc.data()})
-                        Total_income = Total_income + doc.data().Income
+                        TotalIncome = TotalIncome + doc.data().Income
                         
                     })
                 })

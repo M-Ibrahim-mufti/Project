@@ -3,7 +3,7 @@
   <header class="pt-24 pb-4 mx-4">
     <div class="container bg-slate-800 py-10 rounded-[20px] Shadows max-xl:relative max-xl:!max-w-[900px] max-md:!max-w-[600px] max-sm:!max-w-[540px] ">
         <div class="text-left mx-5 text-clr">
-            <h2 class="my-10 text-white text-5xl max-sm:text-3xl">Welcome To MEMN's Dashboard</h2>
+            <h2 class="my-10 text-white text-5xl max-sm:text-3xl">Welcome To MEMNs' Dashboard</h2>
             <p class="w-[95%] text-justify ml-10 text-2xl mb-14 max-sm:text-xl max-sm:ml-5 max-sm:text-left">Welcome to our Monthly Expense Management platform, designed to simplify your financial journey. Our user-friendly interface offers intuitive tools for tracking and analyzing your monthly expenses, providing you with a clear overview of your financial health. With customizable categories and detailed transaction logs, you can effortlessly allocate your income, ensuring it aligns with your priorities. Set realistic budget goals and receive timely notifications to stay on track. Gain insights into your spending patterns and make informed decisions for a more secure financial future. Let's embark on this journey towards financial well-being together</p>
         </div>
         <div id="Cards" class="flex flex-row justify-evenly max-lg:flex max-lg:flex-col">
@@ -40,7 +40,7 @@
                     <p class="mb-2 max-sm:text-sm">Welcome to our Monthly Expense Management System! Our platform is designed to help you effortlessly track and manage your monthly expenses.</p>
                     <p class="mb-2 max-sm:text-sm">With user-friendly features and intuitive design</p>
                     <p class="mb-3 max-sm:text-sm">Take control of your finances with us and experience a seamless approach to tracking, analyzing, and optimizing your expenses</p>
-                    <div class="flex justify-end"><a href="/dashboard" class="btn" >Read More</a></div>
+                    <div class="flex justify-end"><a href="/Dashboard" class="btn" >Read More</a></div>
                 </div>
             </div>
         </div>

@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <Sing_IN/> 
+    <div >
+        <SignIn/> 
     </div>
 </template>
 
 <script setup>
-    import Sing_IN from "../components/Sign_In.vue"
+    import SignIn from "../components/Sign_In.vue"
 </script>

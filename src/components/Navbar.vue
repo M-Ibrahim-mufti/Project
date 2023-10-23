@@ -9,13 +9,13 @@
                     </div>
                 </div>
                 <ul id="Dash_items" class="Nav-close max-xl:text-sm max-lg:mt-3 max-lg:text-xl  w-3/5 text-clr flex flex-row justify-end text-lg items-center max-lg:w-1/2 max-lg:flex-col max-lg:justify-center">
-                    <li class="mx-4 max-lg:my-[2px]" :class="{'active' : Navkey == 'Dashboard'}"><router-link @click="Navkey='Dashboard'" to="/dashboard">Dashboard</router-link></li>
-                    <li class="mx-4 max-lg:my-[2px]" :class="{'active' : Navkey == 'Expense-manager'}"><router-link @click="Navkey='Expense-manager'" to="/Expense-manager">Expense Manager</router-link></li>
-                    <li class="mx-4 max-lg:my-[2px]" :class="{'active' : Navkey == 'Income-manager'}"><router-link @click="Navkey='Income-manager'" to="/Income-manager">Income Manager</router-link></li>
+                    <li class="mx-4 max-lg:my-[2px]" :class="{'active' : NavKey == 'Dashboard'}"><router-link @click="NavKey='Dashboard'" to="/Dashboard">Dashboard</router-link></li>
+                    <li class="mx-4 max-lg:my-[2px]" :class="{'active' : NavKey == 'Expense-manager'}"><router-link @click="NavKey='Expense-manager'" to="/Expense-manager">Expense Manager</router-link></li>
+                    <li class="mx-4 max-lg:my-[2px]" :class="{'active' : NavKey == 'Income-manager'}"><router-link @click="NavKey='Income-manager'" to="/Income-manager">Income Manager</router-link></li>
                     <li><button @click="handleSignOut" class="flex items-center text-clr py-[6px] px-4 max-lg:py-[2px] max-lg:px-4 text-lg border max-lg:text-base rounded-full bg-transparent">Sign Out</button></li>
                 </ul>
                 <div class="lg:hidden max-lg:w-1/4 flex justify-end items-start">
-                    <a id="Nav-btn"  @click="openNavBar">
+                    <a id="Nav-btn"  @click="OpenNavBar">
                         <span class="relative block bg-white w-[40px] h-[2px] mb-2"></span>
                         <span class="relative block bg-white w-[40px] h-[2px] mb-2"></span>
                         <span class="relative block bg-white w-[40px] h-[2px]"></span>
@@ -27,17 +27,18 @@
 </template>
 
 <script setup>
+
 // Imports
     import { onMounted,ref } from 'vue';
     import { getAuth, onAuthStateChanged, signOut}  from "firebase/auth"
     import router from '@/router';
 
 // Variables
-    const isloggedin = ref(false)
+    const IsLoggedIn = ref(false)
     let auth
-    const showNav = ref(false)
-    const screenWidth = ref(window.innerWidth)
-    const Navkey = ref('Dashboard')
+    const ShowNav = ref(false)
+    const ScreenWidth = ref(window.innerWidth)
+    const NavKey = ref('Dashboard')
 
 // Functions 
 
@@ -45,18 +46,22 @@
     onMounted(() => {
         auth = getAuth()
 
-        // Calling the OnAuthstateCHangemethod 
-        // which will check if the user has logged in or not
+        // Calling the OnAuthStateChangeMethod 
+        // Which will check if the user has logged in or not
         onAuthStateChanged(auth, (user) => {
             if(user) {
-                isloggedin.value = true
+                IsLoggedIn.value = true
             }
             else {
-                isloggedin.value = false
+                IsLoggedIn.value = false
+
             }
         })
 
         window.addEventListener("resize", removed)
+        window.addEventListener("load", () => {
+            IsLoggedIn.value = true 
+        })
 
     })
 
@@ -69,39 +74,39 @@
 
     // Removing the classes so that the animation should not interfere during width changes
     const removed = () =>{
-        screenWidth.value = window.innerWidth
-        const nav = document.getElementById("Dash_items")
+        ScreenWidth.value = window.innerWidth
+        const Nav = document.getElementById("Dash_items")
         const Navbar = document.getElementById("Navbar")
-        if(screenWidth.value <= 1024 ){
-            nav.classList.remove("Nav-open", "Nav-close")
+
+        if(ScreenWidth.value <= 1024 ){
+            Nav.classList.remove("Nav-open", "Nav-close")
             Navbar.classList.remove("opening", "closing")
-            nav.style.transform = 'translateY(-500px)'
+            Nav.style.transform = 'translateY(-500px)'
         }
-        if(screenWidth.value >1024) {
-            nav.style.transform = 'translateY(0px)'
+        if(ScreenWidth.value >1024) {
+            Nav.style.transform = 'translateY(0px)'
         }
     }
 
-    // Functions for openning and closing of nav-Menu
-    const openNavBar = () => {
-        const nav = document.getElementById("Dash_items")
+    // Functions for opening and closing of nav-Menu
+    const OpenNavBar = () => {
+        const Nav = document.getElementById("Dash_items")
         const Navbar = document.getElementById("Navbar")
-        if(showNav.value === false && isloggedin.value === true ) {
-            nav.classList.add("Nav-open")
-            nav.classList.remove("Nav-close")
+        if(ShowNav.value === false && IsLoggedIn.value === true ) {
+            Nav.classList.add("Nav-open")
+            Nav.classList.remove("Nav-close")
             Navbar.classList.add("opening")
             Navbar.classList.remove("closing")
-            showNav.value = true
+            ShowNav.value = true
         }
         else {
-            nav.classList.add("Nav-close")
-            nav.classList.remove("Nav-open")
+            Nav.classList.add("Nav-close")
+            Nav.classList.remove("Nav-open")
             Navbar.classList.add("closing")
             Navbar.classList.remove("opening")
-            showNav.value = false
+            ShowNav.value = false
 
-        }
-        
+        }   
     }
     
 </script>

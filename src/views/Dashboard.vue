@@ -15,7 +15,7 @@
 
     
 // Variables
-    const isloggedin = ref(false)
+    const IsLoggedIn = ref(false)
     let auth
     
 
@@ -25,14 +25,14 @@
     onMounted(() => {
         auth = getAuth()
 
-        // Calling the OnAuthstateCHangemethod 
+        // Calling the OnAuthStateChangeMethod 
         // which will check if the user has logged in or not
         onAuthStateChanged(auth, (user) => {
             if(user) {
-                isloggedin.value = true
+                IsLoggedIn.value = true
             }
             else {
-                isloggedin.value = false
+                IsLoggedIn.value = false
             }
         })
     })
