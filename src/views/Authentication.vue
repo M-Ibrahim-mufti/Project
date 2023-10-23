@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Sing_IN/>
+        <Sing_IN/> 
     </div>
 </template>
 

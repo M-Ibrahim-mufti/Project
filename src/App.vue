@@ -18,7 +18,7 @@
     onAuthStateChanged(auth, (user) => {
       IsLoggedIn.value = !!user 
     })
-    console.log(IsLoggedIn.value)
+    console.log(IsLoggedIn.value) // remove
   })
 </script>
 
