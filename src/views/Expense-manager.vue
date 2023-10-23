@@ -36,8 +36,8 @@
                         <h2 class="w-[40%] text-left text-2xl py-3 pr-3 whitespace-nowrap max-sm:text-base max-sm:border-r-4 max-sm:mr-3 max-sm:border-gray-600">RS <em class="py-4 pl-4 mx-3 border-l-4 border-gray-600">{{ val.Expense_price}}</em></h2>
                         <!-- Removing the Entitty from the database as well as the frontend -->
                         <div class="flex w-full mr-5 text-2xl text-red-600 justify-end items-center  max-sm:w-[20%]">
-                            <button @click="EditTask(val.id)" class="max-sm:w-[50%] max-sm:py-1 max-sm:px-2 max-sm:mr-1 max-sm:text-sm max-sm:rounded-full rounded-[20px] text-lg px-6 py-2 mr-5 text-white bg-green-600 hover:bg-green-800 transition-all duration-300 ease-in "> E</button>
-                            <button @click="deletedata(val.id)" class="max-sm:w-[50%] max-sm:py-1 max-sm:px-2 max-sm:ml-1 max-sm:text-sm rounded-[20px] text-lg px-6 py-2 text-white bg-red-600 hover:bg-red-800 transition-all duration-300 ease-in">X</button>
+                            <button @click="EditTask(val.id)" class="max-sm:w-[50%] max-sm:py-1 max-sm:px-2 max-sm:mr-1 max-sm:text-sm max-sm:rounded-full rounded-[20px] text-lg px-6 py-2 mr-5 text-white bg-green-800 hover:bg-green-600 transition-all duration-300 ease-in "> E</button>
+                            <button @click="deletedata(val.id)" class="max-sm:w-[50%] max-sm:py-1 max-sm:px-2 max-sm:ml-1 max-sm:text-sm rounded-[20px] text-lg px-6 py-2 text-white bg-red-800 hover:bg-red-600 transition-all duration-300 ease-in">X</button>
                         </div>
                     </div>
                 </div>
@@ -70,13 +70,15 @@
 </template>
 
 <script setup>
+
+    // Imports 
     import { onMounted, ref } from 'vue';
     import { onSnapshot, doc, collection, addDoc, deleteDoc, updateDoc } from 'firebase/firestore';
     import { db } from '@/main';
     import { getAuth, onAuthStateChanged } from 'firebase/auth';
     
+    // Variables
     let auth
-
     const showEditPopup = ref(false)
     const AU = ref()
     const number = ref("")
@@ -86,58 +88,97 @@
     const Users = collection(db, "Users")
     const EditsExpense = ref({id:"", name:"", price: ""})
 
+    // Functions
+
+    // to close the Edit popup
     const cancelEdit = () =>{
         showEditPopup.value = false
     }
 
+    // upadating Values on the database 
     const saveEdit = () => {
+        // Getting Collection
         const ExpenseRef = doc(Users, Current_id.value,"Expenses", EditsExpense.value.id)
+
+        // Updating the typed value and overwriting the previous value to the new one
         updateDoc(ExpenseRef, {
             Enxpense_name: EditsExpense.value.name,
             Expense_price: EditsExpense.value.price
         })
         
+        // Closing the edit pop up
         showEditPopup.value = false
     }
+
+    // opening the Edit popup
     const EditTask = (id) =>{
+
+        // getting collection
         const expense = Expense.value.find(item => item.id === id )
+        
+        // if the id found on the Expense Array then it will open the edit menu
 
         if(expense) {
+            // Writing these value on the Edit pop up so that user can modify easily 
             EditsExpense.value = {id:expense.id, name:expense.Enxpense_name, price:expense.Expense_price}
+            // opening Edit Pop-up
             showEditPopup.value = true
         }
     }
 
+    // submitting the Enter form and adding value to the collection 
     const onSubmit = async() => {
         console.log(AU.value)
+
+        // Alerting so that user should not add empty entities to the collection
         if(text.value == "" && number.value ==""){
             alert("fields cannot be empty")
         }
         else{
+
+            //adding typed data to the collection  
             await addDoc(collection(Users, Current_id.value, "Expenses"), {
                 Enxpense_name : text.value,
                 Expense_price : number.value
             })
         }
 
+        // reassigning the Values of input as empty strings
         text.value = ""
         number.value = ""
     }
 
+    // Deleting The values from the collection as well as the frontend
     const deletedata = async(id) => {
+
+        // getting collection and giving it id so that it can delete that specific data
         const ExpenseRef = doc(Users, Current_id.value, "Expenses", id)
-        console.log(ExpenseRef.id)
+
+        // deleting from the database 
         await deleteDoc(ExpenseRef)
 
+        // removing from the Array as well
         Expense.value = Expense.value.filter(items => items.id !== id)
     }
 
+    // Fetching data from the Collections 
+
+    // creating Snapshot of the collection
     onSnapshot(Users, (Query) => {
-        console.log(capitalizeFirstLetter(AU.value))
+
+        // checking each Document 
         Query.forEach((doc)=> {
+
+            // If current logged in user found in any of the doc it will proceed futher otherwise not
             if(doc.data().User_Email === AU.value || doc.data().User_Email === capitalizeFirstLetter(AU.value)){
+
+                // saving id of document in a variable ("Not necessary did that for practicing purpose")
                 Current_id.value = doc.id
+
+                // Accessing Sub-collection 
                 onSnapshot(collection(Users, Current_id.value, "Expenses"), (InnerQuery) => {
+
+                    // Adding data to the Array for the display
                     Expense.value = []
                     InnerQuery.forEach((doc) => {
                         Expense.value.push({id:doc.id, ...doc.data()})
@@ -146,6 +187,8 @@
             }
         })
     })
+
+    // getting current logged in user
     onMounted(() => {
         auth = getAuth()
         onAuthStateChanged (auth, (user) => {
@@ -153,13 +196,11 @@
         })
     })
 
-
+    // capitalizing first letter of the email 
     function capitalizeFirstLetter(string){
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
-    
-    
-    
+        
 
 </script>
 

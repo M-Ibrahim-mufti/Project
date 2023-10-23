@@ -8,7 +8,6 @@
 <script setup>
 
 // Imports
-    import Navbar from "../components/Navbar.vue"
     import Charts from "../components/Charts.vue"
     import Welcome from "../components/Welcome.vue"
     import { onMounted,ref } from 'vue';

@@ -1,3 +1,4 @@
+<!-- Casual Card For UI enchancement -->
 <template>
   <header class="pt-24 pb-4 mx-4">
     <div class="container bg-slate-800 py-10 rounded-[20px] Shadows max-xl:relative max-xl:!max-w-[900px] max-md:!max-w-[600px] max-sm:!max-w-[540px] ">
