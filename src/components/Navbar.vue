@@ -12,7 +12,6 @@
                     <li class="mx-4 max-lg:my-[2px]" :class="{'active' : Navkey == 'Dashboard'}"><router-link @click="Navkey='Dashboard'" to="/dashboard">Dashboard</router-link></li>
                     <li class="mx-4 max-lg:my-[2px]" :class="{'active' : Navkey == 'Expense-manager'}"><router-link @click="Navkey='Expense-manager'" to="/Expense-manager">Expense Manager</router-link></li>
                     <li class="mx-4 max-lg:my-[2px]" :class="{'active' : Navkey == 'Income-manager'}"><router-link @click="Navkey='Income-manager'" to="/Income-manager">Income Manager</router-link></li>
-                    <li class="mx-4 max-lg:mb-[2px]" :class="{'active' : Navkey == 'About'}"><router-link @click="Navkey='About'" to="/About">About</router-link></li>               
                     <li><button @click="handleSignOut" class="flex items-center text-clr py-[6px] px-4 max-lg:py-[2px] max-lg:px-4 text-lg border max-lg:text-base rounded-full bg-transparent">Sign Out</button></li>
                 </ul>
                 <div class="lg:hidden max-lg:w-1/4 flex justify-end items-start">
@@ -87,7 +86,7 @@
     const openNavBar = () => {
         const nav = document.getElementById("Dash_items")
         const Navbar = document.getElementById("Navbar")
-        if(showNav.value === false ) {
+        if(showNav.value === false && isloggedin.value === true ) {
             nav.classList.add("Nav-open")
             nav.classList.remove("Nav-close")
             Navbar.classList.add("opening")
@@ -180,7 +179,7 @@
             margin-top: 16px;
         }
         .opening{
-            animation: Opens .5s forwards;
+            animation: Opens .3s forwards;
         }
         .closing{
             animation: closes .5s forwards;

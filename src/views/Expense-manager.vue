@@ -32,7 +32,7 @@
                 </div>
                 <div class="w-full flex justify-start mx-5 max-sm:justify-center max-sm:mx-auto" v-for="val in Expense" :key="val">
                     <div class="pop_up w-[95%] bg-slate-900 text-clr mb-2 flex flex-row border-2 border-gray-600 items-center rounded-[5px] "> 
-                        <h2 class="w-[40%] text-left text-2xl mx-3 py-3 pr-3 border-gray-600 border-r-4 max-sm:text-base">{{ val.Enxpense_name }}</h2>
+                        <h2 class="w-[40%] text-left text-2xl mx-3 py-3 pr-3 border-gray-600 border-r-4 max-sm:text-base">{{ val.Expense_name }}</h2>
                         <h2 class="w-[40%] text-left text-2xl py-3 pr-3 whitespace-nowrap max-sm:text-base max-sm:border-r-4 max-sm:mr-3 max-sm:border-gray-600">RS <em class="py-4 pl-4 mx-3 border-l-4 border-gray-600">{{ val.Expense_price}}</em></h2>
                         <!-- Removing the Entitty from the database as well as the frontend -->
                         <div class="flex w-full mr-5 text-2xl text-red-600 justify-end items-center  max-sm:w-[20%]">
@@ -102,7 +102,7 @@
 
         // Updating the typed value and overwriting the previous value to the new one
         updateDoc(ExpenseRef, {
-            Enxpense_name: EditsExpense.value.name,
+            Expense_name: EditsExpense.value.name,
             Expense_price: EditsExpense.value.price
         })
         
@@ -120,7 +120,7 @@
 
         if(expense) {
             // Writing these value on the Edit pop up so that user can modify easily 
-            EditsExpense.value = {id:expense.id, name:expense.Enxpense_name, price:expense.Expense_price}
+            EditsExpense.value = {id:expense.id, name:expense.Expense_name, price:expense.Expense_price}
             // opening Edit Pop-up
             showEditPopup.value = true
         }
@@ -138,7 +138,7 @@
 
             //adding typed data to the collection  
             await addDoc(collection(Users, Current_id.value, "Expenses"), {
-                Enxpense_name : text.value,
+                Expense_name : text.value,
                 Expense_price : number.value
             })
         }
