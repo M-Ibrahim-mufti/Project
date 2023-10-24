@@ -1,6 +1,6 @@
 <template>
     <section id="Navbar" class="py-2 w-full fixed bg-gradient-to-tr max-lg:h-[60px] from-slate-900 via-slate-800 to-slate-900 z-[100]">
-        <div class="container max-xl:!max-w-[900px] max-md:!max-w-[600px] max-sm:!max-w-[540px]">
+        <div class="container max-xl:!max-w-[900px] max-lg:!max-w-[750px] max-md:!max-w-[600px] max-sm:!max-w-[390px]">
             <div class="flex flex-row justify-between">
                 <div class="w-1/4">
                     <div class="flex flex-row items-center">
@@ -79,7 +79,7 @@
             Navbar.classList.remove("opening", "closing")
             Nav.style.transform = 'translateY(-500px)'
         }
-        if(ScreenWidth.value >1024) {
+        if(ScreenWidth.value > 1024) {
             Nav.style.transform = 'translateY(0px)'
         }
     }

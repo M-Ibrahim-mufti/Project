@@ -12,7 +12,7 @@
                         <h2 class=" text-white mb-5 text-4xl text-left font-bold">Add Your Expenses</h2>
                         <div class="mx-5 my-auto flex flex-col justify-start mb-5">
                             <label class="text-white text-center font-bold text-2xl mb-3 max-sm:text-left" for="Expenses">Enter your Expense</label>
-                            <input class="bg-slate-800 text-white outline-none border-b-2 text-lg py-2 px-4" type="text" v-model="Text" placeholder="Enter your Expense Here">
+                            <input class="bg-slate-800 text-white outline-none border-b-2 text-lg py-2 px-4 capitalize" type="text" v-model="Text" placeholder="Enter your Expense Here">
                         </div>
                         <div class="mx-5 flex flex-col mb-5">
                             <label class="text-white text-center font-bold text-2xl mb-3 max-sm:text-left" for="Budget">Enter price of that Expense</label>
@@ -53,7 +53,7 @@
                     <h2 class="text-4xl text-white font-bold mb-5 max-sm:text-2xl">Edit your Expenses Here</h2>
                     <div class="mb-10 max-sm:mx-4">
                         <label class="block text-left text-2xl mb-3 text-white" for="editName">Expense Name</label>
-                        <input class="w-full outline-none border-b-2 pl-3 bg-slate-800 border-gray-600 text-xl" type="text" v-model="EditsExpense.name" id="editName">
+                        <input class="w-full outline-none border-b-2 pl-3 bg-slate-800 border-gray-600 text-xl capitalize" type="text" v-model="EditsExpense.name" id="editName">
                     </div>
                     <div class="max-sm:mx-4">
                         <label class="block text-left text-2xl mb-3 text-white" for="editPrice">Expense Price</label>
@@ -137,7 +137,6 @@
 
     // submitting the Enter form and adding value to the collection 
     const OnSubmit = async() => {
-        console.log(AU.value)
 
         // Alerting so that user should not add empty entities to the collection
         if(Text.value == "" && Numbers.value ==""){

@@ -35,10 +35,8 @@
 	import autoTable from "jspdf-autotable"
 
 	// Variables
-	const ExpenseName = ref([])
-	const ExpensePrice = ref([])
-	const IncomeName = ref([])
-	const IncomePrice = ref([])
+	const Incomes = ref([])
+    const Expenses = ref([])
 	const AU = ref()
 	let auth
 	const Users = collection(db, "Users")
@@ -63,22 +61,30 @@
 				// if it matches the user that is current logged in then it will create the Snapshot of all the expenses and incomes of that users
 				if(doc.data().User_Email === AU.value || doc.data().User_Email === capitalizeFirstLetter(AU.value)){
 					onSnapshot(collection(Users,doc.id,"Expenses"), (Snap) => {
-						ExpenseName.value = []
-						ExpensePrice.value = []
-						Snap.forEach((doc) => {
-							ExpenseName.value.push(doc.data().Expense_name)
-							ExpensePrice.value.push(doc.data().Expense_price)
-						})
 
+                        Expenses.value = []
+						Snap.forEach((doc) => {
+                            Expenses.value.push({name: doc.data().Expense_name, Amount:doc.data().Expense_price})
+						}) 
+
+                        for(let i = 0; i < Expenses.value.length;i++) {
+                            for(let j = i+1; j < Expenses.value.length;j++) {
+                                if(Expenses.value[i].name == Expenses.value[j].name){
+                                    Expenses.value[i].Amount += Expenses.value[j].Amount
+                                    Expenses.value.splice(j , 1)
+                                    j--;
+                                }
+                            }
+                        }
 						// Creating Charts...
 						if(Chart1.value && Chart2.value){
 							let FirstChart = new Chart(Chart1.value, {
 								type: "bar",
 								data: {
-									labels: ExpenseName.value,
+									labels: Expenses.value.map((Expense) => Expense.name),
 									datasets: [{
 										label: "Prices",
-										data: ExpensePrice.value,
+										data: Expenses.value.map((Expense) => Expense.Amount),
 										backgroundColor: [
 											'#318CE7',
 											'#F9629F',
@@ -95,9 +101,9 @@
 							let SecondChart = new Chart(Chart2.value, {
 								type:"pie",
 								data: {
-									labels:ExpenseName.value, 
+									labels:Expenses.value.map((Expense) => Expense.name), 
 									datasets: [{
-										data:ExpensePrice.value,
+										data:Expenses.value.map((Expense) => Expense.Amount),
 										labels: "Prices",
 									}]
 								},
@@ -108,13 +114,12 @@
 
 				// Saving income data in their respected Arrays 
 					onSnapshot(collection(Users, doc.id, "Income"), (Snap) => {
-						IncomeName.value = []
-						IncomePrice.value = []
+						Incomes.value = []
 						Snap.forEach((doc) => {
-							IncomeName.value.push(doc.data().Income_Category)
-							IncomePrice.value.push(doc.data().Income)
+                            Incomes.value.push({Income_cat:doc.data().Income_Category, Amount:doc.data().Income})
 						})
 					})
+                   
 				}
 			})
 		})
@@ -125,7 +130,6 @@
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
     const  GeneratePDF = () => { 
-
         // variables 
         let EN = []
         let Esum = 0
@@ -133,16 +137,15 @@
         let Isum = 0
 
         // Saving Expense name and prices in an Array 
-        for (let j = 0; j < ExpenseName.value.length; j++) {
-            EN.push([ExpenseName.value[j], ExpensePrice.value[j]])
-            Esum = Esum + ExpensePrice.value[j]
+        for (let j = 0; j < Expenses.value.length; j++) {
+            EN.push([Expenses.value[j].name, Expenses.value[j].Amount])
+            Esum = Esum + Expenses.value[j].Amount
         }
 
         // Saving Income category and Incomes in an Array
-        console.log(IncomeName.value)
-        for (let i = 0; i < IncomeName.value.length;i++){
-            IN.push([IncomeName.value[i], IncomePrice.value[i]])
-            Isum = Isum + IncomePrice.value[i]
+        for (let i = 0; i < Incomes.value.length;i++){
+            IN.push([Incomes.value[i].Income_cat, Incomes.value[i].Amount])
+            Isum = Isum + Incomes.value[i].Amount
         }
 
         // creating a PDF 
