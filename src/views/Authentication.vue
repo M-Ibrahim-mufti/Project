@@ -5,5 +5,5 @@
 </template>
 
 <script setup>
-    import SignIn from "../components/Sign_In.vue"
+    import SignIn from "../components/SignIn.vue"
 </script>

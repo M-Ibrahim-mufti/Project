@@ -59,10 +59,6 @@
         })
 
         window.addEventListener("resize", removed)
-        window.addEventListener("load", () => {
-            IsLoggedIn.value = true 
-        })
-
     })
 
     // Clicking on Sign Out will move the user back to the Sign In page
@@ -108,7 +104,7 @@
 
         }   
     }
-    
+
 </script>
 
 <style scoped>

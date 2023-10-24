@@ -46,7 +46,7 @@
 <script setup>
 // Imports 
 
-    import SignUp from "../components/Sign_up.vue"
+    import SignUp from "../components/SignUp.vue"
     import { ref } from "vue"
     import { getAuth, signInWithEmailAndPassword,GoogleAuthProvider, signInWithPopup } from "firebase/auth";
     import { useRouter } from "vue-router"
