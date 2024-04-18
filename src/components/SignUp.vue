@@ -1,19 +1,19 @@
 <template>
     <div id="sign-up" class="RSI w-1/2 bg-slate-800 text-center rounded-r-[20px] max-md:w-full max-md:h-[760px] max-md:rounded-[20px]">
-        <h2 class="text-5xl my-7 text-white max-sm:text-4xl">MEMS</h2>
-        <div class="mt-24 mb-10 text-white max-md:mb-4 max-md:mt-9 " >
+        <h2 class="text-5xl my-5 text-white max-sm:text-4xl">MEMS</h2>
+        <div class="mt-14 mb-10 text-white max-md:mb-4 max-md:mt-9 " >
             <h2 class="text-3xl max-sm:text-2xl">Welcome to MEMS</h2>
         </div>
         <p v-if="ErrorMessage" class="bg-red-600 pl-5 mx-20 mb-2 text-left text-white borders">{{ ErrorMessage }}</p>
-        <div class="mx-20 text-left mb-6 max-sm:mx-8">
+        <div class="mx-20 text-left mb-5 max-sm:mx-8">
             <h2 class="text-xl text-white mb-4 max-sm:text-base max-sm:mb-2">Create your Email</h2>
             <p><input class="bg-slate-800 text-white inp px-4 py-2 w-full border border-gray-500" type="text" placeholder="Type your Email" v-model="Email" @keyup.enter="SignUp"></p>
         </div>
-        <div id="pass1" class="mx-20 text-left mb-6 max-sm:mx-8">
+        <div id="pass1" class="mx-20 text-left mb-5 max-sm:mx-8">
             <h2 class="text-xl text-white mb-4 max-sm:text-base max-sm:mb-2">Create your Password</h2>
             <p><input class="bg-slate-800 text-white inp px-4 py-2 w-full border border-gray-500" type="password" placeholder="Type your Password" v-model="Password" @keyup.enter="SignUp"></p>
         </div>
-        <div class="mx-20 text-center mb-16 mt-10">
+        <div class="mx-20 text-center my-10">
             <button class="btn" @click="SignUp" >Sign up</button>
         </div>
         <div class="flex flex-row justify-center text-gray-400 text-2xl mb-6">
@@ -21,7 +21,7 @@
             <p>or</p>
             <p>-----</p>
         </div>
-        <div class="mx-20 my-20">
+        <div class="mx-20 my-10">
             <h2 class="text-xl text-white">Already have an Account <a @click="SignInPage" class="cursor-pointer text-2xl text-clr hover:text-red-500 transition-all duration-500 ease-in">Sign in</a></h2>
         </div>
     </div>

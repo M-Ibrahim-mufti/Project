@@ -225,8 +225,6 @@
         margin: 0;
     }
     .Shadows{
-        /* box-shadow : rgba(0, 0, 0, 0.35) 0px 5px 15px; */
-        box-shadow: rgba(200, 200, 200, 0.5) 0px 5px 15px;
         border-radius: 20px;
     }
 
