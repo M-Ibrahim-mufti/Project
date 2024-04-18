@@ -1,13 +1,13 @@
 <template>
-    <section class="py-32 bg-image">
-        <div class="container  border-gray-300 max-xl:!max-w-[900px] max-lg:!max-w-[780px] max-md:!max-w-[600px] max-sm:!max-w-[340px]">
+    <section class="h-screen w-screen flex justify-center items-center overflow-hidden bg-image">
+        <div class="container border-gray-300 max-xl:!max-w-[900px] max-lg:!max-w-[780px] max-md:!max-w-[600px] max-sm:!max-w-[340px]">
             <div class="flex flex-row flew-wrap max-md:flex-col">
                 <div id="image" class="w-1/2 h-full max-md:w-full max-md:hidden">
-                    <img class="object-fill w-full h-[920px] border-r-2 rounded-l-[20px]" src="../assets/Side_image.jpg" alt="">
+                    <img class="object-contain w-full h-[720px] bg-white border-r-2 rounded-l-[20px]" src="../assets/Side_image.jpg" alt="">
                 </div>
                 <div id="sign-in" class=" bg-slate-800 w-1/2 text-center rounded-r-[20px] max-md:w-full max-md:h-[760px] max-md:rounded-[20px]">
-                    <h2 class="text-5xl text-white my-7 max-sm:text-4xl">MEMS</h2>
-                    <div class="mt-24 mb-10 max-md:mb-4 max-md:mt-9" >
+                    <h2 class="text-5xl text-white my-5 max-sm:text-4xl">MEMS</h2>
+                    <div class="mt-14 mb-10 max-md:mb-4 max-md:mt-9" >
                         <h2 class="text-3xl text-white max-sm:text-2xl">Welcome to MEMS</h2>
                     </div>
                     <!-- Display the Error messages that occurs during The Sign in -->
@@ -16,12 +16,12 @@
                         <h2 class="text-xl text-white mb-4 max-sm:text-base max-sm:mb-2">Enter your Email</h2>
                         <p><input class="inp bg-slate-800 px-4 py-2 w-full border border-gray-500" type="text" placeholder="Type your Email" v-model="Email" @keyup.enter="SignIn"></p>
                     </div>
-                    <div class="mx-20 text-white text-left mb-6 max-sm:mx-8">
+                    <div class="mx-20 text-white text-left mb-3 max-sm:mx-8">
                         <h2 class="text-xl mb-4 max-sm:mb-2 max-sm:text-base">Enter your Password</h2>
                         <p><input class="inp bg-slate-800 px-4 py-2 w-full border border-gray-500" type="password" placeholder="Type your Password" v-model="Password" @keyup.enter="SignIn"></p>
                         <p class="cursor-pointer flex justify-end mt-2 text-white hover:text-red-500 transition-all duration-500 ease-in">Forgot Your Password ?</p>
                     </div>
-                    <div class="mx-20 text-center mb-6">
+                    <div class="mx-20 text-center mb-5">
                         <button class="btn" @click="SignIn" >Sign In</button>
                     </div>
                     <div class="flex flex-row justify-center text-gray-400 text-2xl mb-6 max-sm:mb-3">
@@ -31,9 +31,9 @@
                     </div>
                     <div id="google-btn" @click="signInWithGoogle" @mouseover="IsVisible" @mouseout="IsHidden" class="flex justify-center items-center mx-32 max-sm:mx-8" >
                         <img src="../assets/icons8-google-48.png">
-                        <p id="g-text" :class="!showtext ? 'hidden' : 'visible'">Sign In with Google</p>
+                        <p id="g-text" :class="!ShowText ? 'hidden' : 'visible'">Sign In with Google</p>
                     </div>
-                    <div class="mx-20 my-20">
+                    <div class="mx-20 my-10">
                         <h2 class="text-xl text-white">New to MEMS? <a @click="CreateAccountPage" class="cursor-pointer text-2xl text-clr hover:text-red-500 transition-all duration-500 ease-in">Create Account</a></h2>
                     </div>
                 </div>
