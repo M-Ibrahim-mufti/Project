@@ -32,17 +32,17 @@
     import { onMounted,ref } from 'vue';
     import { getAuth, onAuthStateChanged, signOut}  from "firebase/auth"
     import router from '@/router';
+    import { watch } from 'vue';
 
 // Variables
     const IsLoggedIn = ref(false)
     let auth
     const ShowNav = ref(false)
     const ScreenWidth = ref(window.innerWidth)
-    const NavKey = ref('Dashboard')
+    const NavKey = ref("Dashboard")
 
 // Functions 
-
-    // Will Load as soon as the DOM is loaded 
+    //  Will Load as soon as the DOM is loaded 
     onMounted(() => {
         auth = getAuth()
 
@@ -59,6 +59,7 @@
         })
 
         window.addEventListener("resize", removed)
+        console.log(NavKey)
     })
 
     // Clicking on Sign Out will move the user back to the Sign In page
@@ -125,9 +126,18 @@
         transition: all .5s ease-in;
     }
     .active {
-        color: white;
-        font-weight: 700;
-        transition: all .4s ease;
+        animation: link-bold .5s linear forwards;
+    }
+
+    @keyframes link-bold {
+        0% {
+            color: rgb(173,173,173);
+            font-weight: normal
+        }
+        100% {
+            color: white;
+            font-weight: bolder;
+        }
     }
 
     @media (max-width:1024px) {
@@ -136,17 +146,22 @@
                 transform:translateY(-50px);
             }
             100% {
-                transform: translateY(50px);
+                transform: translateY(70px);
                 display: flex!important;
 
             }
         }
         @keyframes move-back {
             0% {
-                transform: translateY(0px);
+                opacity: 1;
+                transform: translateY(70px);
+            }
+            50%{
+                opacity: 0;
             }          
             100%{
-                transform: translateY(-500px);
+                opacity: 0;
+                transform: translateY(-50px);
 
             }
         }
@@ -161,7 +176,7 @@
         
         @keyframes closes {
             0%{
-                height:200px;
+                height:260px;
             }
             100% {
                 height: 60px;

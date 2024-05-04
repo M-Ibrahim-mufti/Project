@@ -1,7 +1,7 @@
 <template>
 	<div id="preloader"></div>
 	<Navbar v-if="IsLoggedIn"/>
-	<router-view  v-if="isLoaderComplete"/>
+	<router-view v-if="isLoaderComplete"/>
 </template>
 
 <script setup>

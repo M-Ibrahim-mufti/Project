@@ -3,15 +3,15 @@
         <div class="container border-gray-300 max-xl:!max-w-[900px] max-lg:!max-w-[780px] max-md:!max-w-[600px] max-sm:!max-w-[340px]">
             <div class="flex flex-row flew-wrap max-md:flex-col">
                 <div id="image" class="w-1/2 h-full max-md:w-full max-md:hidden">
-                    <img class="object-contain w-full h-[720px] bg-white border-r-2 rounded-l-[20px]" src="../assets/Side_image.jpg" alt="">
+                    <img class="object-contain w-full h-[760px] bg-white border-r-2 rounded-l-[20px]" src="../assets/Side_image.jpg" alt="">
                 </div>
-                <div id="sign-in" class=" bg-slate-800 w-1/2 text-center rounded-r-[20px] max-md:w-full max-md:h-[760px] max-md:rounded-[20px]">
-                    <h2 class="text-5xl text-white my-5 max-sm:text-4xl">MEMS</h2>
-                    <div class="mt-14 mb-10 max-md:mb-4 max-md:mt-9" >
+                <div id="sign-in" class=" bg-slate-800 w-1/2 text-center rounded-r-[20px] max-md:w-full max-md:h-[760px] max-md:rounded-[20px] max-sm:h-[640px]">
+                    <h2 class="text-5xl text-white my-5 max-sm:text-3xl">MEMS</h2>
+                    <div class="mt-14 mb-10 max-md:mb-4 max-md:mt-9 max-sm:mt-5" >
                         <h2 class="text-3xl text-white max-sm:text-2xl">Welcome to MEMS</h2>
                     </div>
                     <!-- Display the Error messages that occurs during The Sign in -->
-                    <p v-if="ErrorMessage" class="bg-red-600 pl-5 mx-20 mb-2 text-left  text-white borders">{{ ErrorMessage }}</p>
+                    <p v-if="ErrorMessage" class="bg-red-600 pl-5 mx-5 mb-2 text-left  text-white borders">{{ ErrorMessage }}</p>
                     <div class="mx-20 text-left text-white mb-6 max-sm:mx-8 ">
                         <h2 class="text-xl text-white mb-4 max-sm:text-base max-sm:mb-2">Enter your Email</h2>
                         <p><input class="inp bg-slate-800 px-4 py-2 w-full border border-gray-500" type="text" placeholder="Type your Email" v-model="Email" @keyup.enter="SignIn"></p>
@@ -258,7 +258,7 @@
         border-radius: 30px;
         background-color: rgb(58, 58, 58);
 	}
-	@media (max-width:440px){
+	@media (max-width:640px){
         .btn {
             font-size: 24px;
         }
